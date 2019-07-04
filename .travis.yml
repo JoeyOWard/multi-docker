@@ -5,20 +5,20 @@ node_js:
 services:
     - docker
 
-before install:
+before_install:
     - docker build -t joewardcp/react-test -f ./client/Dockerfile.dev ./client
 script: 
     - docker run -e CI=true joewardcp/react-test npm run test -- --coverage
 
-after success:
-    - docker build -t joeward/multi-client ./client
-    - docker build -t joeward/multi-nginx ./nginx
-    - docker build -t joeward/multi-server ./server
-    - docker build -t joeward/multi-worker ./worker
+after_success:
+    - docker build -t joewardcp/multi-client ./client
+    - docker build -t joewardcp/multi-nginx ./nginx
+    - docker build -t joewardcp/multi-server ./server
+    - docker build -t joewardcp/multi-worker ./worker
 
     - echo "$DOCKER_PASSWORD" | docker login "$DOCKER_ID" --password-stdin
 
-    - docker push joeward/multi-client
-    - docker push joeward/multi-nginx
-    - docker push joeward/multi-server
-    - docker push joeward/multi-worker
+    - docker push joewardcp/multi-client
+    - docker push joewardcp/multi-nginx
+    - docker push joewardcp/multi-server
+    - docker push joewardcp/multi-worker
