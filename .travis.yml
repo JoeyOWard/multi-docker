@@ -1,4 +1,7 @@
 sudo: required
+language: node_js
+node_js:
+    - 10.16.0
 services:
     - docker
 
@@ -20,4 +23,3 @@ after success:
     - docker push joeward/multi-nginx
     - docker push joeward/multi-server
     - docker push joeward/multi-worker
-     
