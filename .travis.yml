@@ -7,9 +7,8 @@ services:
 
 before install:
     - docker build -t joewardcp/react-test -f ./client/Dockerfile.dev ./client
-
 script: 
-    - docker run -e CI=true joewardcp/react-test npm test -- --coverage
+    - docker run -e CI=true joewardcp/react-test npm run test -- --coverage
 
 after success:
     - docker build -t joeward/multi-client ./client
